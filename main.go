@@ -179,35 +179,25 @@ func main() {
 	// 규칙들 먼저 작성
 	writeRules(&structure)
 
-	// 그 다음 프로젝트 구조 작성
+	// 프로젝트 이름 (하이픈 없이)
 	structure.WriteString(filepath.Base(projectDir) + "/\n")
 
-	var printDir func(dir string, prefix string)
-	printDir = func(dir string, prefix string) {
+	var printDir func(dir string, depth int)
+	printDir = func(dir string, depth int) {
 		entries := dirContents[dir]
-		for i, entry := range entries {
-			isLast := i == len(entries)-1
-			newPrefix := prefix
-			if isLast {
-				structure.WriteString(prefix + "└── ")
-				newPrefix += "    "
-			} else {
-				structure.WriteString(prefix + "├── ")
-				newPrefix += "│   "
-			}
+		prefix := strings.Repeat("-", depth) + " "
 
-			name := entry.name
+		for _, entry := range entries {
 			if entry.isDir {
-				name += "/"
-				structure.WriteString(name + "\n")
-				printDir(entry.path, newPrefix)
+				structure.WriteString(prefix + entry.name + "/\n")
+				printDir(entry.path, depth+1)
 			} else {
-				structure.WriteString(name + "\n")
+				structure.WriteString(prefix + entry.name + "\n")
 			}
 		}
 	}
 
-	printDir(projectDir, "")
+	printDir(projectDir, 1)
 
 	cursorrules := filepath.Join(projectDir, ".cursorrules")
 	err = os.WriteFile(cursorrules, []byte(structure.String()), 0644)
