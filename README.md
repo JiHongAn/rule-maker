@@ -20,4 +20,4 @@ go build -o maker main.go
 3. .cursorrules 파일이 해당 디렉토리에 생성됨
 
 ## Cursor rules
-[https://github.com/PatrickJS/awesome-cursorrules]
+https://github.com/PatrickJS/awesome-cursorrules
