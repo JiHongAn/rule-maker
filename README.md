@@ -18,3 +18,6 @@ go build -o maker main.go
 1. 프로그램 실행
 2. 프로젝트 디렉토리 경로 입력 (드래그 앤 드롭 가능)
 3. .cursorrules 파일이 해당 디렉토리에 생성됨
+
+## Cursor rules
+[https://github.com/PatrickJS/awesome-cursorrules]
