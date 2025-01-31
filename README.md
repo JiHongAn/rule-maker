@@ -21,3 +21,4 @@ go build -o maker main.go
 
 ## Cursor rules
 https://github.com/PatrickJS/awesome-cursorrules
+https://dotcursorrules.com
